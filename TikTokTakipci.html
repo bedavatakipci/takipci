@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takipçi Satışı</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            animation: fadeIn 0.5s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        header {
+            background: linear-gradient(90deg, #6200ea, #03a9f4);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            font-size: 1.2em;
+            margin: 10px 0 0;
+        }
+        .product {
+            margin: 20px 0;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        .button {
+            background-color: #ff5722;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.1em;
+        }
+        .button:hover {
+            background-color: #e64a19;
+            transform: translateY(-2px);
+        }
+        #form {
+            display: none;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #00c853, #b2ff59);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            color: #fff;
+        }
+        label {
+            font-size: 1.1em;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="text"], input[type="number"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-size: 1em;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        input[type="number"] {
+            max-width: 100px;
+        }
+        input[type="text"]:focus, input[type="number"]:focus {
+            outline: none;
+            border: 2px solid #ffcc00;
+            background: #ffffff;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+        #countdown {
+            font-size: 1.3em;
+            margin-top: 10px;
+            color: #ffcc00;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .nav-button {
+            background-color: #ffffff;
+            color: #6200ea;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 25px;
+            margin: 0 10px;
+            transition: background-color 0.3s, transform 0.3s;
+            border: 2px solid #6200ea;
+        }
+        .nav-button:hover {
+            background-color: #5e35b1;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Bedava Takipçi</h1>
+        <p>En iyi TikTok bedava takipçi burada!</p>
+    </header>
+
+    <div class="product">
+        <h2>50 TikTok Takipçisi</h2>
+        <p>Fiyat: Ücretsiz</p>
+        <button class="button" onclick="openForm()">Bedava Al</button>
+    </div>
+
+    <div id="form">
+        <h3>Takipçi Talep Formu</h3>
+        <label for="username">TikTok Kullanıcı Adı:</label>
+        <input type="text" id="username" placeholder="Kullanıcı adınızı girin" required>
+        <label for="count">Takipçi Sayısı:</label>
+        <input type="number" id="count" min="1" max="50" value="1" required>
+        <button onclick="submitForm()" class="button">Gönder</button>
+        <button onclick="closeForm()" class="button" style="background-color: #dc3545;">İptal</button>
+        <p id="message" style="margin-top: 20px;"></p>
+        <p id="countdown" style="display: none;"></p>
+    </div>
+
+    <div class="footer-links">
+        <a href="https://bedavatakipci.github.io/takipci/Hakimda.html" class="nav-button">Hakkımızda</a>
+        <a href="https://bedavatakipci.github.io/takipci/İletişim.html" class="nav-button">İletişim</a>
+    </div>
+</div>
+
+<script>
+    function openForm() {
+        document.getElementById('form').style.display = 'block';
+    }
+
+    function closeForm() {
+        document.getElementById('form').style.display = 'none';
+        document.getElementById('message').innerText = '';
+        document.getElementById('countdown').style.display = 'none';
+    }
+
+    function isValidUsername(username) {
+        const regex = /^[a-zA-Z0-9._]{3,24}$/;
+        return regex.test(username);
+    }
+
+    function submitForm() {
+        const username = document.getElementById('username').value;
+        const count = parseInt(document.getElementById('count').value);
+        
+        if (!isValidUsername(username)) {
+            alert("Geçersiz TikTok kullanıcı adı! (3-24 karakter, yalnızca harf, rakam, nokta ve alt çizgi kullanılabilir.)");
+            return;
+        }
+
+        if (count > 50) {
+            alert("Maksimum takipçi sayısı 50'dir.");
+            return;
+        }
+
+        document.getElementById('message').innerText = `${count} takipçi ${username} hesabına gönderiliyor. Lütfen 1 dakika bekleyin.`;
+        document.getElementById('countdown').style.display = 'block';
+        
+        startCountdown(1);
+        
+        setTimeout(() => {
+            document.getElementById('message').innerText = `Başarıyla ${count} takipçi ${username} hesabınıza eklendi!`;
+            document.getElementById('countdown').style.display = 'none';
+        }, 60000);
+    }
+
+    function startCountdown(minutes) {
+        let time = minutes * 60;
+        const countdownElement = document.getElementById('countdown');
+        
+        const interval = setInterval(() => {
+            const minutes = Math.floor(time / 60);
+            const seconds = time % 60;
+            countdownElement.innerText = `${minutes} dakika ${seconds} saniye kaldı`;
+            time--;
+            if (time < 0) {
+                clearInterval(interval);
+            }
+        }, 1000);
+    }
+</script>
+
+</body>
+</html>
