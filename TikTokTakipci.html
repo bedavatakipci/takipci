@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Takipçi Satışı</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
+        /* Genel Stil Ayarları */
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
         body {
             font-family: 'Arial', sans-serif;
             background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
@@ -109,9 +115,18 @@
             margin-top: 10px;
             color: #ffcc00;
         }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 20px;
+        }
         .footer-links {
             display: flex;
             justify-content: center;
+            align-items: center;
             margin-top: 20px;
         }
         .nav-button {
@@ -126,6 +141,21 @@
         }
         .nav-button:hover {
             background-color: #5e35b1;
+            transform: translateY(-2px);
+        }
+        .fullscreen-button {
+            background-color: #ffcc00;
+            color: #fff;
+            padding: 10px 30px;
+            border: none;
+            border-radius: 25px;
+            margin: 0 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        .fullscreen-button:hover {
+            background-color: #f57f20;
             transform: translateY(-2px);
         }
     </style>
@@ -146,7 +176,7 @@
 
     <div id="form">
         <h3>Takipçi Talep Formu</h3>
-        <label for="username">TikTok Kullanıcı Adı:</label>
+        <label for="username">Kullanıcı Adı:</label>
         <input type="text" id="username" placeholder="Kullanıcı adınızı girin" required>
         <label for="count">Takipçi Sayısı:</label>
         <input type="number" id="count" min="1" max="50" value="1" required>
@@ -156,19 +186,24 @@
         <p id="countdown" style="display: none;"></p>
     </div>
 
-    <div class="footer-links">
-        <a href="https://bedavatakipci.github.io/takipci/Hakimda.html" class="nav-button">Hakkımızda</a>
-        <a href="https://bedavatakipci.github.io/takipci/İletişim.html" class="nav-button">İletişim</a>
+    <div class="footer">
+        <div class="footer-links">
+            <a href="https://bedavatakipci.github.io/takipci/Hakimda.html" class="nav-button"><i class="fas fa-info-circle"></i> Hakkımızda</a>
+            <button onclick="toggleFullScreen()" class="fullscreen-button"><i class="fas fa-expand-arrows-alt"></i> Tam Ekran</button>
+            <a href="https://bedavatakipci.github.io/takipci/İletişim.html" class="nav-button"><i class="fas fa-envelope"></i> İletişimimiz</a>
+        </div>
     </div>
 </div>
 
 <script>
     function openForm() {
         document.getElementById('form').style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Aşağı kaydırmayı engelle
     }
 
     function closeForm() {
         document.getElementById('form').style.display = 'none';
+        document.body.style.overflow = 'auto'; // Aşağı kaydırmayı geri aç
         document.getElementById('message').innerText = '';
         document.getElementById('countdown').style.display = 'none';
     }
@@ -216,6 +251,16 @@
                 clearInterval(interval);
             }
         }, 1000);
+    }
+
+    function toggleFullScreen() {
+        if (!document.fullscreenElement) {
+            document.documentElement.requestFullscreen();
+        } else {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+        }
     }
 </script>
 
