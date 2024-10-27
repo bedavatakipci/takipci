@@ -3,65 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İletişim</title>
+    <title>letiim</title>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+            background: linear-gradient(135deg, #ff4081, #ffd740);
             margin: 0;
-            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
         }
         .container {
-            max-width: 800px;
-            margin: auto;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            padding: 30px;
-        }
-        header {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            padding: 40px;
             text-align: center;
-            margin-bottom: 20px;
         }
         h1 {
-            color: #6200ea;
+            color: #ff4081;
             font-size: 2.5em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
+        h1:hover {
+            color: #c51162;
         }
         p {
             font-size: 1.2em;
-            color: #333;
+            color: #555;
+            margin-bottom: 30px;
         }
         .social-links {
-            margin-top: 20px;
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin: 20px 0;
         }
         .social-button {
-            background-color: #6200ea; /* Mor */
+            background: linear-gradient(45deg, #ff6f20, #ff4081);
             color: white;
             padding: 15px 25px;
-            border-radius: 30px; /* Yuvarlak kenarlar */
+            border-radius: 30px;
             text-decoration: none;
-            font-size: 1.1em;
-            margin: 0 10px;
-            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1.2em;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         .social-button:hover {
-            background-color: #5e35b1; /* Koyu Mor */
-            transform: scale(1.05);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        .social-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.5s;
+            z-index: 0;
+            transform: translate(-50%, -50%) scale(0);
+        }
+        .social-button:hover::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        .social-button span {
+            position: relative;
+            z-index: 1;
+        }
+        footer {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #777;
+        }
+        /* Renkli arka plan animasyonu */
+        @keyframes gradientAnimation {
+            0% { background-color: #ff4081; }
+            50% { background-color: #ffd740; }
+            100% { background-color: #ff4081; }
+        }
+        .animated-background {
+            animation: gradientAnimation 5s ease infinite;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>İletişim</h1>
-    </header>
-    <p>Bize ulaşmak için aşağıdaki sosyal medya hesaplarımızdan birini kullanabilirsiniz:</p>
+<div class="container animated-background">
+    <h1>İletişim</h1>
+    <p>Bize ulamak için aadaki sosyal medya hesaplarmzdan birini kullanabilirsiniz:</p>
     <div class="social-links">
-        <a href="https://www.instagram.com/renaso_73/profilecard/?igsh=MW1weG91MDlnZTV5NA==" target="_blank" class="social-button">Instagram</a>
-        <a href="https://www.tiktok.com/@renasbey._?_t=8qoVpzXx5XU&_r=1" target="_blank" class="social-button">TikTok</a>
+        <a href="https://www.instagram.com/renaso_73" target="_blank" class="social-button">Instagram</a>
+        <a href="https://www.tiktok.com/@renasbey" target="_blank" class="social-button">TikTok</a>
     </div>
+    <footer>
+    </footer>
 </div>
 
 </body>
