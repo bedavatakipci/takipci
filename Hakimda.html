@@ -7,48 +7,43 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to bottom right, #e3f2fd, #bbdefb);
+            background: linear-gradient(to bottom right, #ffeb3b, #ff5722);
             margin: 0;
             padding: 20px;
+            color: #333; /* Metin rengi koyu gri */
         }
         .container {
             max-width: 800px;
             margin: auto;
-            background: #ffffff;
+            background: #fff;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             padding: 30px;
+            transition: transform 0.3s;
+            text-align: center; /* Metni ortala */
         }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
+        .container:hover {
+            transform: scale(1.02);
         }
         h1 {
-            color: #6200ea;
+            color: #1976d2;
             font-size: 2.5em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px; /* Üst boşluk */
         }
         p {
-            font-size: 1.2em;
-            color: #333;
+            font-size: 1.2em; /* Daha büyük yazı boyutu */
+            line-height: 1.6;
+            margin: 15px 0; /* Üst ve alt boşluk */
         }
-        .footer-links {
-            display: flex;
-            justify-content: center; /* Ortala */
-            margin-top: 20px;
-        }
-        .nav-button {
-            background-color: #ffffff; /* Beyaz */
-            color: #6200ea; /* Mor */
-            padding: 10px 20px;
-            text-decoration: none;
-            border-radius: 25px;
-            margin: 0 10px;
-            transition: background-color 0.3s, transform 0.3s;
-            border: 2px solid #6200ea; /* Kenar rengi */
-        }
-        .nav-button:hover {
-            background-color: #5e35b1; /* Koyu Mor */
-            transform: translateY(-2px);
+        .highlight {
+            background: #81d4fa;
+            padding: 15px;
+            border-left: 5px solid #1976d2;
+            margin: 20px 0; /* Üst ve alt boşluk */
+            text-align: left; /* Sola yasla */
+            color: #000; /* Vurgu kutusu için metin rengi */
         }
     </style>
 </head>
@@ -59,12 +54,10 @@
         <h1>Hakkımızda</h1>
     </header>
     <p>Biz, sosyal medya platformlarında güvenilir takipçi hizmeti sunmayı hedefleyen bir ekibiz. Kullanıcıların hesaplarını büyütmelerine yardımcı olmak amacıyla en kaliteli hizmetleri sağlıyoruz.</p>
-    <p>Müşteri memnuniyetine önem veriyor, hızlı ve etkili çözümler sunuyoruz. Takipçi hizmetlerimiz tamamen ücretsizdir ve TikTok platformuna özeldir.</p>
-    <p>Ekibimiz, sosyal medya stratejileri konusunda uzmandır ve sizlere en iyi hizmeti sunmak için sürekli çalışıyoruz.</p>
-
-    <div class="footer-links">
-        
+    <div class="highlight">
+        <p>Müşteri memnuniyetine önem veriyor, hızlı ve etkili çözümler sunuyoruz. Takipçi hizmetlerimiz tamamen ücretsizdir ve TikTok platformuna özeldir.</p>
     </div>
+    <p>Ekibimiz, sosyal medya stratejileri konusunda uzmandır ve sizlere en iyi hizmeti sunmak için sürekli çalışıyoruz.</p>
 </div>
 
 </body>
