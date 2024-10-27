@@ -6,56 +6,82 @@
     <title>Takipçi Satışı</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Eşit Arka Planlar */
         html, body {
             height: 100%;
-            overflow: hidden;
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ffeb3b, #ff5722); /* Eşit ve canlı arka plan */
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #ffeb3b, #ff5722);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: backgroundAnimation 10s ease infinite;
         }
+
+        @keyframes backgroundAnimation {
+            0% { background: #ffeb3b; }
+            50% { background: #ff5722; }
+            100% { background: #ffeb3b; }
+        }
+
         .container {
             max-width: 800px;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.9); /* Yarı saydam beyaz arka plan */
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            padding: 40px;
             animation: fadeIn 0.5s;
+            text-align: center;
         }
+
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
         header {
             background: linear-gradient(90deg, #6200ea, #03a9f4);
             color: white;
             padding: 20px;
-            text-align: center;
             border-radius: 15px 15px 0 0;
         }
+
         header h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 3em;
         }
-        header p {
-            font-size: 1.2em;
-            margin: 10px 0 0;
-        }
+
         .product {
-            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
             border-radius: 10px;
-            text-align: center;
             padding: 20px;
             background: #f9f9f9;
             border: 1px solid #ddd;
             transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
         }
+
         .product:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
+
+        .product i {
+            font-size: 4em;
+            color: #ff5722;
+            margin-bottom: 10px;
+        }
+
+        .product h2 {
+            margin: 10px 0;
+            font-size: 2em;
+        }
+
         .button {
             background-color: #ff5722;
             color: white;
@@ -64,29 +90,32 @@
             border-radius: 25px;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-            transition: background-color 0.3s, transform 0.3s;
-            font-size: 1.1em;
+            margin-top: 15px;
+            font-size: 1.2em;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
+
         .button:hover {
             background-color: #e64a19;
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
         }
+
         .footer {
             background-color: #f1f1f1;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            margin-top: 20px;
+            margin-top: 30px;
         }
+
         .footer-links {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: 20px;
+            margin-top: 10px;
         }
+
         .nav-button {
             background-color: #ffffff;
             color: #6200ea;
@@ -94,9 +123,10 @@
             text-decoration: none;
             border-radius: 25px;
             margin: 0 10px;
-            transition: background-color 0.3s, transform 0.3s;
             border: 2px solid #6200ea;
+            transition: background-color 0.3s, transform 0.3s;
         }
+
         .nav-button:hover {
             background-color: #5e35b1;
             transform: translateY(-2px);
@@ -112,6 +142,7 @@
     </header>
 
     <div class="product">
+        <i class="fas fa-users"></i>
         <h2>50 TikTok Takipçisi</h2>
         <p>Fiyat: Ücretsiz</p>
         <button class="button" onclick="goToForm()">Bedava Al</button>
@@ -127,7 +158,7 @@
 
 <script>
     function goToForm() {
-        window.location.href = "https://bedavatakipci.github.io/takipci/Takip%C3%A7iTalep.html"; // Takipçi talep formuna gidilecek link
+        window.location.href = "https://bedavatakipci.github.io/takipci/Takip%C3%A7iTalep.html";
     }
 </script>
 
