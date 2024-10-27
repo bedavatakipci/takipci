@@ -6,10 +6,9 @@
     <title>Takipçi Talep Formu</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        /* Genel Stil Ayarları */
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            background: linear-gradient(to right, #6a11cb, #2575fc);
             margin: 0;
             padding: 20px;
             display: flex;
@@ -19,10 +18,10 @@
             overflow: hidden;
         }
         .container {
-            max-width: 400px;
-            background: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            max-width: 450px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             padding: 30px;
             text-align: center;
             animation: fadeIn 0.5s;
@@ -35,7 +34,7 @@
             color: #ff4081;
             margin-bottom: 20px;
             font-size: 2.5em;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
         }
         label {
             font-size: 1.2em;
@@ -46,78 +45,72 @@
         }
         input[type="text"], input[type="number"] {
             width: calc(100% - 20px);
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
-            border-radius: 5px;
+            border-radius: 8px;
             border: 2px solid #ddd;
             font-size: 1em;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
         input[type="text"]:focus, input[type="number"]:focus {
             border-color: #ff4081;
-            box-shadow: 0 0 5px rgba(255, 64, 129, 0.5);
+            box-shadow: 0 0 8px rgba(255, 64, 129, 0.5);
             outline: none;
         }
         .button {
             background-color: #673ab7;
+            background-image: linear-gradient(to right, #7e57c2, #673ab7);
             color: white;
-            padding: 15px 20px;
+            padding: 15px 25px;
             border: none;
             border-radius: 25px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
             font-size: 1.1em;
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
         }
         .button:hover {
-            background-color: #5e35b1;
+            background-image: linear-gradient(to right, #5e35b1, #7e57c2);
             transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
-        #message {
+        #profile-image {
+            margin-top: 20px;
+            display: none;
+            max-width: 100px;
+            border-radius: 50%;
+            border: 3px solid #ff4081;
+        }
+        #message, #countdown {
             margin-top: 20px;
             font-size: 1.1em;
+        }
+        #message {
             color: #4caf50;
             font-weight: bold;
         }
         #countdown {
-            font-size: 1.3em;
-            margin-top: 10px;
             color: #ffcc00;
             font-weight: bold;
-        }
-        .footer {
-            margin-top: 20px;
-            font-size: 0.9em;
-            color: #999;
-        }
-        .footer a {
-            color: #ff4081;
-            text-decoration: none;
-        }
-        .footer a:hover {
-            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>Takipçi Talep Formu</h1>
-    <label for="username">Gerçek Kullanıcı Ad</label>
+    <h1><i class="fas fa-users"></i> Takipçi Talep Formu</h1>
+    <label for="username"><i class="fas fa-user"></i> Gerçek Kullanıcı Ad</label>
     <input type="text" id="username" placeholder="Kullanıcı adınızı girin" required>
     
-    <label for="count">Takipçi Sayısı Max 50</label>
+    <label for="count"><i class="fas fa-plus"></i> Takipçi Sayısı Max 50</label>
     <input type="number" id="count" min="1" max="50" value="1" required>
     
-    <button onclick="submitForm()" class="button">Gönder</button>
-    <button onclick="cancelForm()" class="button" style="background-color: #e57373;">İptal</button>
+    <button onclick="submitForm()" class="button"><i class="fas fa-paper-plane"></i> Gönder</button>
+    <button onclick="cancelForm()" class="button" style="background-color: #e57373;"><i class="fas fa-times"></i> İptal</button>
     
+    <img id="profile-image" src="" alt="Profil Resmi">
     <p id="message"></p>
     <p id="countdown" style="display: none;"></p>
-
-    <div class="footer">
-    </div>
 </div>
 
 <script>
@@ -130,7 +123,13 @@
         return regex.test(username);
     }
 
-    function submitForm() {
+    async function fetchProfileImage(username) {
+        // Gerçek TikTok API'si kullanılmalı
+        // Örnek URL, kullanıcı adına göre değiştirilmeli
+        return `https://example.com/profile/${username}.jpg`; // Burayı gerçek URL ile değiştirin
+    }
+
+    async function submitForm() {
         const username = document.getElementById('username').value;
         const count = parseInt(document.getElementById('count').value);
         
@@ -139,8 +138,14 @@
             return;
         }
 
-        if (count > 50) {
-            alert("Maksimum takipçi sayısı 50'dir.");
+        document.getElementById('message').innerText = `Kullanıcı adı doğrulanıyor...`;
+
+        try {
+            const imageUrl = await fetchProfileImage(username);
+            document.getElementById('profile-image').src = imageUrl;
+            document.getElementById('profile-image').style.display = 'block';
+        } catch (error) {
+            alert("Profil resmi alınamadı.");
             return;
         }
 
